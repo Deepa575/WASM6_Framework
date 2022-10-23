@@ -33,8 +33,8 @@ public class CreateContactWithOrganization {
 		String USERNAME = pLib.readDataFromPropertyFile("username");
 		String PASSWORD = pLib.readDataFromPropertyFile("password");
 
-		String LASTNAME = eLib.readDataFromExcel("Contacts", 4, 2) + jLib.getRandomNumber();
-		String ORGNAME = eLib.readDataFromExcel("Contacts", 4, 3)+jLib.getRandomNumber();
+		String LASTNAME = eLib.readDataFromExcel("Contact", 4, 2) + jLib.getRandomNumber();
+		String ORGNAME = eLib.readDataFromExcel("Contact", 4, 3)+jLib.getRandomNumber();
 
 		WebDriver driver = null;
 

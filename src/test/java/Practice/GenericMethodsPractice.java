@@ -28,7 +28,7 @@ public class GenericMethodsPractice {
 		
 		String val = eLib.readDataFromExcel("Organization", 1, 2);
 		System.out.println(val);
-		int row = eLib.getRowCount("Contacts");
+		int row = eLib.getRowCount("Contact");
 		System.out.println(row);
 		eLib.writeDataIntoExcel("Organization", 7, 8, "CHAITRA");
 		

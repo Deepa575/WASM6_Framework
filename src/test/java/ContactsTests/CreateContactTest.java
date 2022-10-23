@@ -31,7 +31,7 @@ public static void main(String[] args) throws IOException {
 		String USERNAME = pLib.readDataFromPropertyFile("username");
 		String PASSWORD = pLib.readDataFromPropertyFile("password");
 		
-		String LASTNAME = eLib.readDataFromExcel("Contacts", 1, 2)+jLib.getRandomNumber();
+		String LASTNAME = eLib.readDataFromExcel("Contact", 1, 2)+jLib.getRandomNumber();
 		
 		WebDriver driver = null;
 		
