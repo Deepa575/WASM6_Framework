@@ -2,9 +2,7 @@ package ContactsTests;
 
 import java.io.IOException;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -12,6 +10,11 @@ import GenericUtilities.ExcelFileUtility;
 import GenericUtilities.JavaUtility;
 import GenericUtilities.PropertyFileUtility;
 import GenericUtilities.WebDriverUtility;
+import ObjectRepository.ContactsInfoPage;
+import ObjectRepository.ContactsPage;
+import ObjectRepository.CreateNewContactPage;
+import ObjectRepository.HomePage;
+import ObjectRepository.LoginPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 
@@ -56,22 +59,24 @@ public static void main(String[] args) throws IOException {
 		driver.get(URL);
 		
 		//Step 4: Login to Application
-		driver.findElement(By.name("user_name")).sendKeys(USERNAME);
-		driver.findElement(By.name("user_password")).sendKeys(PASSWORD);
-		driver.findElement(By.id("submitButton")).click();
+		LoginPage lp = new LoginPage(driver);
+		lp.loginToApp(USERNAME, PASSWORD);
 		
 		//Step 5: Navigate to Contacts Link
-		driver.findElement(By.linkText("Contacts")).click();
+		HomePage hp = new HomePage(driver);
+		hp.clickOnContactsLnk();
 		
 		//Step 6: Navigate to create Contact Look up image
-		driver.findElement(By.xpath("//img[@alt='Create Contact...']")).click();
+		ContactsPage cp = new ContactsPage(driver);
+		cp.clickOnCreateContactImg();
 		
 		//Step 7: create contact with mandatory details and save
-		driver.findElement(By.name("lastname")).sendKeys(LASTNAME);
-		driver.findElement(By.xpath("//input[@title='Save [Alt+S]']")).click();
+		CreateNewContactPage ccp = new CreateNewContactPage(driver);
+		ccp.createNewContact(LASTNAME);
 		
 		//Step 8: Validate
-		String contactHeader = driver.findElement(By.xpath("//span[@class='dvHeaderText']")).getText();
+		ContactsInfoPage cip = new ContactsInfoPage(driver);
+		String contactHeader = cip.getContactHeader();
 		System.out.println(contactHeader);
 		
 		if(contactHeader.contains(LASTNAME))
@@ -84,9 +89,7 @@ public static void main(String[] args) throws IOException {
 		}
 		
 		//Step 9: Logout of Application
-		WebElement adminImg = driver.findElement(By.xpath("//img[@src='themes/softed/images/user.PNG']"));
-		wLib.mouseHoverOn(driver, adminImg);
-		driver.findElement(By.linkText("Sign Out")).click();
+		hp.signOutOfApp(driver);		
 		
 		}
 }
