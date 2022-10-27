@@ -2,7 +2,9 @@ package ObjectRepository;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {  //rule 1: create a separate java class for every web page
@@ -11,11 +13,10 @@ public class LoginPage {  //rule 1: create a separate java class for every web p
 	@FindBy(name = "user_name")
 	private WebElement userNameEdt;
 	
-	@FindBy(name = "user_password")
-	//@FindAll({@FindBy(name = "user_password"),@FindBy(xpath = "//input[@type='password']")})
+	@FindAll({@FindBy(name = "user_password"),@FindBy(xpath = "//input[@type='password']")})
 	private WebElement passwordEdt;
 	
-	//@FindBys({@FindBy(name = "user_password"),@FindBy(xpath = "//input[@type='password']")})
+	@FindBys({@FindBy(name = "user_password"),@FindBy(xpath = "//input[@type='password']")})
 	//private WebElement passwordEdt;   -->syntax for @FindBys annotation
 	
 	@FindBy(id="submitButton")
